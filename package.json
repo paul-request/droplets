@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@rehooks/window-size": "^1.0.2",
     "react-scripts": "2.1.5"
   },
   "dependencies": {
