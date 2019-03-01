@@ -4,8 +4,8 @@ import Pool from './Pool';
 import ControlPanel from './ControlPanel';
 import useWindowSize from '@rehooks/window-size';
 import useInterval from './useInterval';
+import styled from '@emotion/styled';
 import { COLORS } from './constants';
-import './App.css';
 
 function App() {
   const windowSize = useWindowSize();
@@ -42,7 +42,7 @@ function App() {
   }, isFull() ? null : 200);
 
   return (
-    <div className="droplets">
+    <StyledDroplets>
       {droplets.map((droplet, index) => (
         <Droplet
           key={index}
@@ -61,8 +61,13 @@ function App() {
         color={color}
         diameter={diameter}
       />
-    </div>
+    </StyledDroplets>
   );
 }
+
+const StyledDroplets = styled.div`
+  position: relative;
+  height: 100vh;
+`;
 
 export default App;
