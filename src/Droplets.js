@@ -5,62 +5,60 @@ import ControlPanel from './ControlPanel';
 import useWindowSize from '@rehooks/window-size';
 import useInterval from './useInterval';
 import styled from '@emotion/styled';
-import { getSelectedColor } from './state';
+import { getState } from './state';
 
 function Droplets() {
   const windowSize = useWindowSize();
-  const generateLeftOffset = (width) => (Math.floor(Math.random() * windowSize.innerWidth) + 1) - (width / 2);
-  const getSize = () => Math.floor(Math.random() * 5) + 1;
-  const color = getSelectedColor();
+  const [{ pool }] = getState();
   const [diameter] = useState(10);
-  const generateDroplet = () => {
+  const [droplets, setDroplets] = useState(() => [{ ...generateDroplet() }]);
+
+  function isFull() {
+    return pool.height >= windowSize.innerHeight;
+  }
+
+  function generateLeftOffset(width) {
+    return (Math.floor(Math.random() * windowSize.innerWidth) + 1) - (width / 2);
+  }
+
+  function getSize() {
+    return Math.floor(Math.random() * 5) + 1;
+  }
+
+  function generateDroplet() {
     const size = getSize();
+
     return {
       size,
-      color,
       height: (diameter * 1.5) * size,
       width: diameter * size,
       offset: generateLeftOffset(diameter),
       duration: (2000 / size) // milliseconds
     };
   };
-  const [fill, setFill] = useState(0);
-  const [droplets, setDroplets] = useState(() => [{ ...generateDroplet() }]);
-
-  const fillPool = (drop) => {
-    setFill((fill + (drop * 3)));
-  };
-  const isFull = () => fill >= windowSize.innerHeight;
 
   useInterval(() => {
     const droplet = generateDroplet();
+
     setDroplets([
       ...droplets,
       { ...droplet }
     ]);
-    fillPool(droplet.size);
   }, isFull() ? null : 200);
 
   return (
-        <StyledDroplets>
-        {droplets.map((droplet, index) => (
-            <Droplet
-            key={index}
-            droplet={droplet}
-            fillPool={fillPool}
-            />
-        ))}
-        
-        <Pool
-            color={color}
-            height={fill}
+    <StyledDroplets>
+      {droplets.map((droplet, index) => (
+        <Droplet
+          key={index}
+          droplet={droplet}
         />
+      ))}
+      
+      <Pool />
 
-        <ControlPanel
-            color={color}
-            diameter={diameter}
-        />
-        </StyledDroplets>
+      <ControlPanel />
+    </StyledDroplets>
   );
 }
 

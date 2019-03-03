@@ -10,5 +10,9 @@ export const initialState = {
             'value': '#ff0000',
             'selected': false
         }
-    ]
+    ],
+    pool: {
+        height: 0,
+        color: '#429ef4'
+    }
 };
