@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { COLORS } from './constants';
+import ColorSelector from './ColorSelector';
 import styled from '@emotion/styled';
 import { shadow } from './theme';
 
-function ControlPanel({ color, diameter, setColor }) {
+function ControlPanel() {
     const [hidden, setHidden] = useState(true);
 
     function toggle() {
@@ -11,18 +11,14 @@ function ControlPanel({ color, diameter, setColor }) {
     }
 
     return (
-        <StyledControlPanel color={color} diameter={diameter} isHidden={hidden}>
-            <button onClick={toggle}>
+        <StyledControlPanel isHidden={hidden}>
+            <StyledToggleButton isHidden={hidden} onClick={toggle}>
                 <span className="access">Toggle control panel</span>
                 <span className="toggle toggle-off">&lt;&lt;</span>
                 <span className="toggle toggle-on">&gt;&gt;</span>
-            </button>
+            </StyledToggleButton>
 
-            <ul className="colors">
-                {COLORS.map((color, index) => (
-                    <li key={index} onClick={() => setColor(color)}>{color.name}</li>
-                ))}
-            </ul>
+            <ColorSelector></ColorSelector>
         </StyledControlPanel>
     );
 }
@@ -35,60 +31,51 @@ const StyledControlPanel = styled.div`
     z-index: 20;
     transition: left 0.3s ease-in-out;
     left: ${({ isHidden }) => isHidden ? '-200px' : '0'};
+`;
 
-    button {
-        ${shadow};
-        border-radius: 0 2px 2px 0;
-        appearance: none;
-        background: #fff;
-        position: absolute;
-        right: -60px;
-        top: 0;
-        width: 60px;
-        height: 60px;
-        color: #222;
-        cursor: pointer;
-        z-index: 22;
-        padding: 0;
-        margin: 0;
-        border: 0;
+const StyledToggleButton = styled.button`
+    ${shadow};
+    border-radius: 0 2px 2px 0;
+    appearance: none;
+    background: #fff;
+    position: absolute;
+    right: -60px;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    color: #222;
+    cursor: pointer;
+    z-index: 22;
+    padding: 0;
+    margin: 0;
+    border: 0;
 
-        &:focus {
-            outline: 0;
-        }
-
-        .access {
-            display: none;
-        }
-
-        .menu-join {
-            display: block;
-            width: 62px;
-            height: 60px;
-            transform: translateX(-12px);
-            background: #fff;
-        }
-
-        .toggle-off {
-            display: ${({ isHidden }) => isHidden ? 'none' : 'block'};
-        }
-
-        .toggle-on {
-            display: ${({ isHidden }) => isHidden ? 'block' : 'none'};
-        }
+    &:focus {
+        outline: 0;
     }
 
-    .colors {
-        ${shadow};
+    .access {
+        display: none;
+    }
+
+    .toggle {
+        border-radius: 0 2px 2px 0;
         position: relative;
-        border-radius: 2px;
+        display: block;
+        width: 60px;
+        height: 60px;
+        transform: translateX(-4px);
         background: #fff;
-        color: #222;
-        width: 200px;
-        padding: 0;
-        margin: 0;
-        z-index: 21;
-        min-height: 200px;
+        padding: 0 0 0 4px;
+        line-height: 60px;
+    }
+
+    .toggle-off {
+        display: ${({ isHidden }) => isHidden ? 'none' : 'block'};
+    }
+
+    .toggle-on {
+        display: ${({ isHidden }) => isHidden ? 'block' : 'none'};
     }
 `;
 
