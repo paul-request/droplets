@@ -1,5 +1,6 @@
 import React from "react";
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/core';
 import { getState, getSelectedColor } from './state';
 import useTimeout from './useTimeout';
 import { ReactComponent as Raindrop } from './raindrop.svg';
@@ -15,7 +16,7 @@ function Droplet({ droplet }) {
       type: 'FILL_POOL',
       payload: {
         value: droplet.size * 3,
-        color: droplet.color
+        color
       }
     });
   }, droplet.duration);
@@ -27,9 +28,15 @@ function Droplet({ droplet }) {
   );
 }
 
+const raindropAnimation = keyframes`
+  to {
+    top: 100vh;
+  }
+`;
+
 const StyledDroplet = styled.div`
   position: absolute;
-  animation-name: raindrop;
+  animation-name: ${raindropAnimation};
   animation-timing-function: cubic-bezier(1,0,.91,.19);
   animation-iteration-count: 1;
   left: ${({ droplet }) => `${droplet.offset}px`};

@@ -1,13 +1,12 @@
 import React from "react";
 import styled from '@emotion/styled';
-import { getState, getSelectedColor } from './state';
+import { getState } from './state';
 
 function Pool() {
   const [{ pool }] = getState();
-  const color = getSelectedColor();
 
   return (
-    <StyledPool height={pool.height} color={color.value}></StyledPool>
+    <StyledPool height={pool.height} color={pool.color}></StyledPool>
   );
 }
 

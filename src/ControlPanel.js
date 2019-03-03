@@ -23,7 +23,7 @@ function ControlPanel() {
   );
 }
 
-const StyledControlPanel = styled.div`
+const StyledControlPanel = styled.section`
   position: relative;
   width: 200px;
   top: 30px;
