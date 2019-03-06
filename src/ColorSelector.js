@@ -1,6 +1,5 @@
 import React from "react";
 import styled from '@emotion/styled';
-import { shadow } from './theme';
 import { getState } from './state';
 
 
