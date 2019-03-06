@@ -18,7 +18,10 @@ function ControlPanel() {
         <span className="toggle toggle-on">&gt;&gt;</span>
       </StyledToggleButton>
 
-      <ColorSelector></ColorSelector>
+      <StyledControlPanelOptions>
+        <h2 className="option-title">Droplet color</h2>
+        <ColorSelector></ColorSelector>
+      </StyledControlPanelOptions>
     </StyledControlPanel>
   );
 }
@@ -76,6 +79,25 @@ const StyledToggleButton = styled.button`
 
   .toggle-on {
     display: ${({ isHidden }) => isHidden ? 'block' : 'none'};
+  }
+`;
+
+const StyledControlPanelOptions = styled.section`
+  ${shadow};
+  position: relative;
+  border-radius: 2px;
+  background: #fff;
+  color: #222;
+  width: 200px;
+  padding: 16px;
+  margin: 0;
+  z-index: 21;
+  min-height: 200px;
+
+  .option-title {
+    margin: 0 0 10px;
+    padding: 0;
+    font-size: 1rem
   }
 `;
 

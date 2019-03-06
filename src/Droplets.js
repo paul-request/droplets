@@ -4,17 +4,19 @@ import Pool from './Pool';
 import ControlPanel from './ControlPanel';
 import useWindowSize from '@rehooks/window-size';
 import useInterval from './useInterval';
+import useScreenHeight from './useScreenHeight';
 import styled from '@emotion/styled';
 import { getState } from './state';
 
 function Droplets() {
   const windowSize = useWindowSize();
+  const screenHeight = useScreenHeight();
   const [{ pool }] = getState();
   const [diameter] = useState(10);
   const [droplets, setDroplets] = useState(() => [{ ...generateDroplet() }]);
 
   function isFull() {
-    return pool.height >= windowSize.innerHeight;
+    return pool.height >= screenHeight;
   }
 
   function generateLeftOffset(width) {

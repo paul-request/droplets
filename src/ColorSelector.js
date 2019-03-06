@@ -26,16 +26,8 @@ function ColorSelector() {
 }
 
 const StyledColorList = styled.ul`
-  ${shadow};
-  position: relative;
-  border-radius: 0 2px 2px 0;
-  background: #fff;
-  color: #222;
-  width: 160px;
-  padding: 20px;
+  padding: 0;
   margin: 0;
-  z-index: 21;
-  min-height: 200px;
 `;
 
 const StyledColor = styled.li`
@@ -60,7 +52,7 @@ const StyledColor = styled.li`
     border-style: solid;
     border-color: ${({ color, selected }) => selected ? '#222' : color};
     background-color: ${({ color }) => color};
-    opacity ${({ selected }) => selected ? 1 : 0.5}
+    opacity: ${({ selected }) => selected ? 1 : 0.5};
   }
 `;
 

@@ -5,6 +5,7 @@
   "devDependencies": {
     "@react-simply/state": "^1.0.2",
     "@rehooks/window-size": "^1.0.2",
+    "ios-inner-height": "^1.1.0",
     "react-scripts": "2.1.5"
   },
   "dependencies": {
