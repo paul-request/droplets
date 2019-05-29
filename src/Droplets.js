@@ -11,7 +11,7 @@ import { getState } from './state';
 function Droplets() {
   const windowSize = useWindowSize();
   const screenHeight = useScreenHeight();
-  const [{ pool }] = getState();
+  const [{ pool }, dispatch] = getState();
   const [diameter] = useState(10);
   const [droplets, setDroplets] = useState(() => [{ ...generateDroplet() }]);
 
@@ -39,6 +39,11 @@ function Droplets() {
     };
   };
 
+  function reset() {
+    dispatch({ type: 'RESET_POOL' });
+    setDroplets([]);
+  }
+
   useInterval(() => {
     const droplet = generateDroplet();
 
@@ -60,6 +65,12 @@ function Droplets() {
       <Pool />
 
       <ControlPanel />
+      
+      <StyledButton
+        onClick={() => reset()}
+      >
+        Reset
+      </StyledButton>
     </StyledDroplets>
   );
 }
@@ -67,6 +78,23 @@ function Droplets() {
 const StyledDroplets = styled.div`
   position: relative;
   height: 100vh;
+  z-index: 5;
+  overflow: hidden;
+`;
+
+const StyledButton = styled.button`
+  z-index: 10;
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  padding: 3px 6px;
+  margin: 0;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 `;
 
 export default Droplets;

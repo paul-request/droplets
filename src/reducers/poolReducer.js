@@ -10,6 +10,12 @@ export const poolReducer = (state, action) => {
         height: (state.height + action.payload.value),
         color: nextColor
       }
+
+    case 'RESET_POOL':
+      return {
+        height: 0,
+        color: state.color
+      }
       
     default:
       return state;

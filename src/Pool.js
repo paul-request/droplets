@@ -16,7 +16,7 @@ const StyledPool = styled.div`
   right: 0;
   bottom: 0;
   transition: 0.3s height linear, 0.3s background-color ease-out;
-  z-index: 10;
+  z-index: 5;
   background-color: ${({ color }) => color};
   height: ${({ height }) => `${height}px`};
 `;

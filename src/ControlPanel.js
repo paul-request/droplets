@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ColorSelector from './ColorSelector';
 import styled from '@emotion/styled';
-import { shadow } from './theme';
+import { shadow, access } from './theme';
 
 function ControlPanel() {
   const [hidden, setHidden] = useState(true);
@@ -28,12 +28,12 @@ function ControlPanel() {
 
 const StyledControlPanel = styled.section`
   position: relative;
-  width: 200px;
+  width: 150px;
   top: 30px;
   left: 0;
   z-index: 20;
   transition: left 0.3s ease-in-out;
-  left: ${({ isHidden }) => isHidden ? '-200px' : '0'};
+  left: ${({ isHidden }) => isHidden ? '-150px' : '0'};
 `;
 
 const StyledToggleButton = styled.button`
@@ -45,7 +45,7 @@ const StyledToggleButton = styled.button`
   right: -60px;
   top: 0;
   width: 60px;
-  height: 60px;
+  height: 62px;
   color: #222;
   cursor: pointer;
   z-index: 22;
@@ -58,7 +58,7 @@ const StyledToggleButton = styled.button`
   }
 
   .access {
-    display: none;
+    ${access};
   }
 
   .toggle {
@@ -66,11 +66,11 @@ const StyledToggleButton = styled.button`
     position: relative;
     display: block;
     width: 60px;
-    height: 60px;
+    height: 62px;
     transform: translateX(-4px);
     background: #fff;
     padding: 0 0 0 4px;
-    line-height: 60px;
+    line-height: 62px;
   }
 
   .toggle-off {
@@ -88,16 +88,13 @@ const StyledControlPanelOptions = styled.section`
   border-radius: 2px;
   background: #fff;
   color: #222;
-  width: 200px;
+  width: 150px;
   padding: 16px;
   margin: 0;
   z-index: 21;
-  min-height: 200px;
 
   .option-title {
-    margin: 0 0 10px;
-    padding: 0;
-    font-size: 1rem
+    ${access};
   }
 `;
 

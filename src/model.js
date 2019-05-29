@@ -7,8 +7,11 @@ export const initialState = {
         },
         {
             'name': 'Red',
-            'value': '#ff0000',
-            'selected': false
+            'value': '#ff0000'
+        },
+        {
+            'name': 'Yellow',
+            'value': '#f4d742'
         }
     ],
     pool: {
